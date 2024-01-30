@@ -1,0 +1,26 @@
+{% extends "layout2.html" %}
+
+{% block content %}
+{%import "macros.html" as macro %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-md-8 col-sm-12 col-xs-24">
+            <form action="/distancia" method="POST">
+                {{macro.input_Form(form.num1,class="form-control") }}
+                {{macro.input_Form(form.num2,class="form-control") }}
+                {{macro.input_Form(form.num3,class="form-control") }}
+                {{macro.input_Form(form.num4,class="form-control") }}
+              
+             
+               
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+        </div>
+        {% if resultado is not none%}
+        <div class="col-lg-6 col-md-8 col-sm-12 col-xs-24">
+            <p>El resultado es: {{ resultado }}</p>
+        </div>
+        {% endif%}
+    </div>
+</div>
+{% endblock %}
