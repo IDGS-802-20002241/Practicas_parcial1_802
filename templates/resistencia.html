@@ -1,0 +1,44 @@
+{% extends "layout2.html" %}
+
+{% block content %}
+{%import "macros.html" as macro %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-md-8 col-sm-12 col-xs-24">
+            <form action="/resistencias" method="POST">
+                {{macro.input_Form(form.num1,class="form-control") }}
+                {{macro.input_Form(form.num2,class="form-control") }}
+                {{macro.input_Form(form.num3,class="form-control") }}
+                {{macro.input_Form(form.num4,class="form-control") }}
+
+
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+        </div>
+        {% if resultado is not none%}
+            <table class="tabla">
+                <thead class="encabezados">
+                    <td class="en1" style="margin-right: 30%;">Banda 2</td>
+                    <td class="en2">Banda 1</td>
+                    <td class="en3">Banda 3</td>
+                    <td class="en4">Banda 4</td>
+                    <td class="en5">valor minimo</td>
+                    <td class="en6">valor</td>
+                    <td class="en7">valor maximo</td>
+                </thead>
+                <tbody class="cuerpo">
+                    <td class="en1" style="background-color: {{color}} ;">{{color}}</td>
+                    <td class="en2" style="background-color: {{color2}} ;">{{color2}}</td>
+                    <td class="en3" style="background-color: {{color3}} ;">{{color3}}</td>
+                    <td class="en4" style="background-color: {{color4}} ;">{{color4}}</td>
+                    <td class="en5">{{ resultado2}}Ω</td>
+                    <td class="en6">{{ resultado}}Ω</td>
+                    <td class="en7">{{ resultado3}}Ω</td>
+                </tbody>
+            </table>
+        {% endif%}
+
+    </div>
+</div>
+
+{% endblock %}

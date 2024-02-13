@@ -1,8 +1,12 @@
-{%macro datos(nombre, placeholder,type="text")%}
+{%macro datos(nombre, placeholder,type="text",valor="1", id="0")%}
 
-<p><input name="{{nombre}}" placeholder="{{placeholder}}" type="{{type}}"></p>
+<p><input name="{{nombre}}" placeholder="{{placeholder}}" type="{{type}}" value="{{valor}}" id="{{id}}"></p>
 {%endmacro%}
 
+{%macro datos2(name,nombre)%}
+
+<p><label class="form-check-label" for="{{name}}">{{nombre}}</label></p>
+{%endmacro%}
 {%macro input_Form(Field)%}
     <td>{{Field.label}}</td>
     <dd>{{ Field(**kwargs)|safe}}</dd>
