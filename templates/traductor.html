@@ -1,0 +1,31 @@
+{%extends "layout2.html" %}
+
+{%block content %}
+{%import "macros.html" as macro %}
+<h1>Diccionario Español - Ingles</h1>
+<div class="row">
+    <div class="col-lg-6 col-md-8 col-sm-12 col-xs-24">
+        <form action="" method="POST">
+            {{ macro.input_Form(form.palabra1, class="form-control") }}
+            {{ macro.input_Form(form.palabra2, class="form-control") }}
+            <button type="submit" class="btn btn-primary">Registrar</button>
+        </form>
+    </div>
+
+    <div class="col-lg-6 col-md-8 col-sm-12 col-xs-24">
+        <form action="" method="POST" >
+            {{ macro.input_Form(buscador.palabra, class="form-control") }}
+            {{macro.input_Form(buscador.num4,class="form-control") }}
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </form>
+        {%if request is not none%}
+        <p>{{request}}</p>
+        {%endif%}
+    </div>
+
+
+
+</div>
+
+
+{% endblock %}

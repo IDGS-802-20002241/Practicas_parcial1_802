@@ -1,6 +1,8 @@
 from flask import Flask, request, render_template
 import math
 import forms
+import creacionArchivo 
+
 app=Flask(__name__)
 
 '''     
@@ -10,6 +12,8 @@ Decoradores o rutas
 @app.route("/formulario1",methods=["GET","POST"])
 def calculo():
     resultado = None
+    num1 = 0
+    num2 = 0 
     if request.method == "POST":
         num1 = int(request.form.get("n1"))
         num2 = int(request.form.get("n2"))
@@ -101,6 +105,33 @@ def obtener_color(num):
     else:
         return 'white'
 
+
+@app.route("/traductor",methods=["GET","POST"])
+def traduccion():
+    traductor = forms.Traductor(request.form)
+    buscador  = forms.Busqueda(request.form)
+    buscar = buscador.palabra.data
+    respuesta = None
+    manejador = creacionArchivo.ManejadorArchivo('Traslate.txt')  
+
+    if request.method == 'POST' and traductor.validate():
+        palabra1 = traductor.palabra1.data
+        palabra2 = traductor.palabra2.data
+
+        try:
+            manejador.insertar(palabra1, palabra2)
+            print(f'Palabras insertadas: {palabra1} - {palabra2}')
+        except Exception as e:
+            print(f"Error durante la inserción: {e}")
+
+    if buscador.validate():
+        num4 = int(buscador.num4.data)
+        if num4 == 1:
+             respuesta = manejador.mostrar_contenido1(buscar)     
+        else:
+             respuesta = manejador.mostrar_contenido2(buscar)
+    print(traductor.validate())
+    return render_template("traductor.html", form=traductor,buscador=buscador, request=respuesta)
 
    
 if __name__ == "__main__":
